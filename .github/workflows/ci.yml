@@ -22,9 +22,9 @@ jobs:
       
     - name: Build and test
       run: |
-        xcodebuild clean test \
+        xcodebuild test \
         -project TonalLab.xcodeproj \
         -scheme TonalLab \
-        -destination 'platform=iOS Simulator,name=iPhone 16' \
+        -destination 'platform=iOS Simulator' \
         -enableCodeCoverage YES \
         CODE_SIGNING_ALLOWED=NO
