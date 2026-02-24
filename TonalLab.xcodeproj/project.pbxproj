@@ -6,6 +6,13 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		70A24F3F2F4E107800719653 /* SharedUI in Frameworks */ = {isa = PBXBuildFile; productRef = 70A24F3E2F4E107800719653 /* SharedUI */; };
+		70A24F412F4E107B00719653 /* TonalLabAudio in Frameworks */ = {isa = PBXBuildFile; productRef = 70A24F402F4E107B00719653 /* TonalLabAudio */; };
+		70A24F432F4E107E00719653 /* TrainingFeatureDomain in Frameworks */ = {isa = PBXBuildFile; productRef = 70A24F422F4E107E00719653 /* TrainingFeatureDomain */; };
+		70A24F452F4E108000719653 /* TrainingFeaturePresentation in Frameworks */ = {isa = PBXBuildFile; productRef = 70A24F442F4E108000719653 /* TrainingFeaturePresentation */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		702C97EA2F3FAD90004B0C3D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +59,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70A24F452F4E108000719653 /* TrainingFeaturePresentation in Frameworks */,
+				70A24F432F4E107E00719653 /* TrainingFeatureDomain in Frameworks */,
+				70A24F3F2F4E107800719653 /* SharedUI in Frameworks */,
+				70A24F412F4E107B00719653 /* TonalLabAudio in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,11 +76,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7000F0FB2F49EEC400F0E17D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		702C97BD2F3FAA3B004B0C3D = {
 			isa = PBXGroup;
 			children = (
 				702C97C82F3FAA3B004B0C3D /* TonalLab */,
 				702C97E72F3FAD90004B0C3D /* TonalLabTests */,
+				7000F0FB2F49EEC400F0E17D /* Frameworks */,
 				702C97C72F3FAA3B004B0C3D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -103,6 +122,10 @@
 			);
 			name = TonalLab;
 			packageProductDependencies = (
+				70A24F3E2F4E107800719653 /* SharedUI */,
+				70A24F402F4E107B00719653 /* TonalLabAudio */,
+				70A24F422F4E107E00719653 /* TrainingFeatureDomain */,
+				70A24F442F4E108000719653 /* TrainingFeaturePresentation */,
 			);
 			productName = TonalLab;
 			productReference = 702C97C62F3FAA3B004B0C3D /* TonalLab.app */;
@@ -483,6 +506,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		70A24F3E2F4E107800719653 /* SharedUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SharedUI;
+		};
+		70A24F402F4E107B00719653 /* TonalLabAudio */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TonalLabAudio;
+		};
+		70A24F422F4E107E00719653 /* TrainingFeatureDomain */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TrainingFeatureDomain;
+		};
+		70A24F442F4E108000719653 /* TrainingFeaturePresentation */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TrainingFeaturePresentation;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 702C97BE2F3FAA3B004B0C3D /* Project object */;
 }
