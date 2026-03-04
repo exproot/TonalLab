@@ -6,7 +6,7 @@
 //
 
 import AVFoundation
-import TrainingFeatureDomain
+import EarTrainingDomain
 
 public actor PianoSamplePlayer: AudioPlaying {
   

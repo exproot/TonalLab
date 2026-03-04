@@ -4,34 +4,39 @@
 import PackageDescription
 
 let package = Package(
-    name: "TonalLabAudio",
+    name: "EarTrainingPresentation",
     platforms: [.iOS(.v17)],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
-            name: "TonalLabAudio",
-            targets: ["TonalLabAudio"]
+            name: "EarTrainingPresentation",
+            targets: ["EarTrainingPresentation"]
         ),
     ],
     dependencies: [
       .package(
+        name: "SharedUI",
+        path: "../../../SharedUI"
+      ),
+      .package(
         name: "EarTrainingDomain",
         path: "../EarTrainingDomain"
-      )
+      ),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "TonalLabAudio",
+            name: "EarTrainingPresentation",
             dependencies: [
+              .product(
+                name: "SharedUI",
+                package: "SharedUI"
+              ),
               .product(
                 name: "EarTrainingDomain",
                 package: "EarTrainingDomain"
               )
-            ],
-            resources: [
-              .process("Resources")
             ]
         ),
 

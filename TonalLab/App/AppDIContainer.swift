@@ -7,19 +7,18 @@
 
 import Foundation
 import TonalLabAudio
-import TrainingFeatureDomain
-import TrainingFeaturePresentation
+import EarTrainingDomain
+import EarTrainingPresentation
 
 final class AppDIContainer {
   
-  func makeTrainingModule() -> TrainingFeaturePresentation.Module {
-    let engine = TrainingEngine()
-    let dependencies = TrainingFeaturePresentation.ModuleDependencies(
-      trainingEngine: engine,
-      audioPlayer: PianoSamplePlayer()
+  func makeEarTrainingModule() -> EarTrainingPresentation.Module {
+    let audioPlayer = PianoSamplePlayer()
+    let dependencies = EarTrainingPresentation.ModuleDependencies(
+      audioPlayer: audioPlayer
     )
     
-    return TrainingFeaturePresentation.Module(dependencies: dependencies)
+    return EarTrainingPresentation.Module(dependencies: dependencies)
   }
   
 }

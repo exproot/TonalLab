@@ -6,7 +6,8 @@
 //
 
 import UIKit
-import TrainingFeaturePresentation
+import EarTrainingDomain
+import EarTrainingPresentation
 
 final class AppFlowCoordinator {
   
@@ -23,9 +24,10 @@ final class AppFlowCoordinator {
   
   func start() {
     guard let navigationController else { return }
-    let trainingModule = appDIContainer.makeTrainingModule()
+    let trainingModule = appDIContainer.makeEarTrainingModule()
+    let trainingMode = EarTrainingMode.game(totalQuestions: 10, totalLives: 3, totalAudioReplays: 3)
     
-    trainingModule.startTrainingFlow(in: navigationController)
+    trainingModule.startEarTrainingFlow(in: navigationController, with: trainingMode)
   }
   
 }

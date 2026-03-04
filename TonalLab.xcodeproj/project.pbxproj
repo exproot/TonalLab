@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		70A24F3F2F4E107800719653 /* SharedUI in Frameworks */ = {isa = PBXBuildFile; productRef = 70A24F3E2F4E107800719653 /* SharedUI */; };
-		70A24F412F4E107B00719653 /* TonalLabAudio in Frameworks */ = {isa = PBXBuildFile; productRef = 70A24F402F4E107B00719653 /* TonalLabAudio */; };
-		70A24F432F4E107E00719653 /* TrainingFeatureDomain in Frameworks */ = {isa = PBXBuildFile; productRef = 70A24F422F4E107E00719653 /* TrainingFeatureDomain */; };
-		70A24F452F4E108000719653 /* TrainingFeaturePresentation in Frameworks */ = {isa = PBXBuildFile; productRef = 70A24F442F4E108000719653 /* TrainingFeaturePresentation */; };
+		701ED98D2F58CED5007EC21B /* SharedUI in Frameworks */ = {isa = PBXBuildFile; productRef = 701ED98C2F58CED5007EC21B /* SharedUI */; };
+		701ED98F2F58CED8007EC21B /* TonalLabAudio in Frameworks */ = {isa = PBXBuildFile; productRef = 701ED98E2F58CED8007EC21B /* TonalLabAudio */; };
+		701ED9912F58CEDB007EC21B /* EarTrainingDomain in Frameworks */ = {isa = PBXBuildFile; productRef = 701ED9902F58CEDB007EC21B /* EarTrainingDomain */; };
+		701ED9932F58CEDE007EC21B /* EarTrainingPresentation in Frameworks */ = {isa = PBXBuildFile; productRef = 701ED9922F58CEDE007EC21B /* EarTrainingPresentation */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,10 +59,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				70A24F452F4E108000719653 /* TrainingFeaturePresentation in Frameworks */,
-				70A24F432F4E107E00719653 /* TrainingFeatureDomain in Frameworks */,
-				70A24F3F2F4E107800719653 /* SharedUI in Frameworks */,
-				70A24F412F4E107B00719653 /* TonalLabAudio in Frameworks */,
+				701ED9912F58CEDB007EC21B /* EarTrainingDomain in Frameworks */,
+				701ED98F2F58CED8007EC21B /* TonalLabAudio in Frameworks */,
+				701ED98D2F58CED5007EC21B /* SharedUI in Frameworks */,
+				701ED9932F58CEDE007EC21B /* EarTrainingPresentation in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,10 +122,10 @@
 			);
 			name = TonalLab;
 			packageProductDependencies = (
-				70A24F3E2F4E107800719653 /* SharedUI */,
-				70A24F402F4E107B00719653 /* TonalLabAudio */,
-				70A24F422F4E107E00719653 /* TrainingFeatureDomain */,
-				70A24F442F4E108000719653 /* TrainingFeaturePresentation */,
+				701ED98C2F58CED5007EC21B /* SharedUI */,
+				701ED98E2F58CED8007EC21B /* TonalLabAudio */,
+				701ED9902F58CEDB007EC21B /* EarTrainingDomain */,
+				701ED9922F58CEDE007EC21B /* EarTrainingPresentation */,
 			);
 			productName = TonalLab;
 			productReference = 702C97C62F3FAA3B004B0C3D /* TonalLab.app */;
@@ -508,21 +508,21 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		70A24F3E2F4E107800719653 /* SharedUI */ = {
+		701ED98C2F58CED5007EC21B /* SharedUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SharedUI;
 		};
-		70A24F402F4E107B00719653 /* TonalLabAudio */ = {
+		701ED98E2F58CED8007EC21B /* TonalLabAudio */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = TonalLabAudio;
 		};
-		70A24F422F4E107E00719653 /* TrainingFeatureDomain */ = {
+		701ED9902F58CEDB007EC21B /* EarTrainingDomain */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = TrainingFeatureDomain;
+			productName = EarTrainingDomain;
 		};
-		70A24F442F4E108000719653 /* TrainingFeaturePresentation */ = {
+		701ED9922F58CEDE007EC21B /* EarTrainingPresentation */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = TrainingFeaturePresentation;
+			productName = EarTrainingPresentation;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
