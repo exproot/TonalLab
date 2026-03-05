@@ -11,5 +11,5 @@ public enum Phase: Equatable, Sendable {
   case idle
   case waitingForAnswer
   case resolvingAnswer
-  case finished(score: Int, totalQuestions: Int)
+  case finished(EarTrainingResult)
 }

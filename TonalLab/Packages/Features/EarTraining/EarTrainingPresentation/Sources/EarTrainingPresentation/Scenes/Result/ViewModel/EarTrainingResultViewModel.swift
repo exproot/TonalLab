@@ -5,47 +5,61 @@
 //  Created by Ertan Yağmur on 5.03.2026.
 //
 
+import EarTrainingDomain
 import Foundation
 
 @MainActor
 final class EarTrainingResultViewModel: ObservableObject {
   
+  enum RingColor {
+    case green, yellow, orange, red
+  }
+  
+  struct ResultStat: Identifiable, Equatable {
+    let id = UUID()
+    let title: String
+    let value: String
+    let type: StatType
+    
+    enum StatType {
+      case lives
+      case replays
+    }
+  }
+  
   struct UIModel: Equatable {
     let title: String
     let subtitle: String
+    let totalQuestions: Int
     let scoreText: String
     let gradeText: String
     let progress: Double
+    let ringColor: RingColor
+    let ringGlowOpacity: Double
+    let stats: [ResultStat]
     let primaryButtonTitle: String
     let secondaryButtonTitle: String
   }
   
+  // MARK: Dependencies
+  private let result: EarTrainingResult
+  
+  // MARK: Output
   @Published private(set) var uiModel: UIModel
   
-  init(score: Int, totalQuestions: Int) {
-    let progress = totalQuestions > 0
-    ? Double(score) / Double(totalQuestions)
-    : 0
-    
-    self.uiModel = UIModel(
-      title: "Round Complete",
-      subtitle: "Nice work - keep training!",
-      scoreText: "\(score) / \(totalQuestions)",
-      gradeText: Self.makeGrade(progress: progress),
-      progress: progress,
-      primaryButtonTitle: "Play Again",
-      secondaryButtonTitle: "Practice"
-    )
+  // MARK: Lifecycle
+  init(result: EarTrainingResult) {
+    self.result = result
+    self.uiModel = EarTrainingResultUIMapper.map(result)
   }
   
-  private static func makeGrade(progress: Double) -> String {
-    switch progress {
-    case 0.9...1: return "S"
-    case 0.8..<0.9: return "A"
-    case 0.65..<0.8: return "B"
-    case 0.5..<0.65: return "C"
-    default: return "D"
-    }
+  // MARK: Computed
+  var shouldShowConfetti: Bool {
+    uiModel.progress >= 0.7
+  }
+  
+  var finalScore: Int {
+    Int(uiModel.progress * Double(result.totalQuestions))
   }
   
 }

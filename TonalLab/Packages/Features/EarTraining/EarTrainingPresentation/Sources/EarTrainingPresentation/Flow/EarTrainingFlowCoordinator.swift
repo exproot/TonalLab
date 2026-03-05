@@ -16,8 +16,7 @@ protocol EarTrainingFlowCoordinatorDependencies {
   ) -> EarTrainingHostingController
   
   func makeEarTrainingResultHostingController(
-    score: Int,
-    totalQuestions: Int
+    result: EarTrainingResult
   ) -> EarTrainingResultHostingController
 }
 
@@ -43,10 +42,9 @@ final class EarTrainingFlowCoordinator {
     navigationController?.pushViewController(viewController, animated: false)
   }
   
-  private func showResult(score: Int, totalQuestions: Int) {
+  private func showResult(result: EarTrainingResult) {
     let viewController = dependencies.makeEarTrainingResultHostingController(
-      score: score,
-      totalQuestions: totalQuestions
+      result: result
     )
     
     navigationController?.setViewControllers([viewController], animated: true)

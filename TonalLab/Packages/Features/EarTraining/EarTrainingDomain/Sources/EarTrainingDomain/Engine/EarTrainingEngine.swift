@@ -134,11 +134,17 @@ struct GameReducer: ModeReducer {
       let updatedLives = isCorrect ? lives : lives - 1
       
       if !isCorrect && updatedLives <= 0 {
+        let result = EarTrainingResult(
+          score: state.score,
+          totalQuestions: totalQuestions,
+          totalLives: totalLives,
+          totalReplays: totalAudioReplays,
+          livesLeft: updatedLives,
+          replaysUsed: totalAudioReplays - (state.remainingReplays ?? 0)
+        )
         
         return ReductionResult(
-          state: state.updating(
-            phase: .finished(score: state.score, totalQuestions: totalQuestions)
-          ),
+          state: state.updating(phase: .finished(result)),
           events: []
         )
       }
@@ -166,10 +172,17 @@ struct GameReducer: ModeReducer {
       let updatedQuestions = questions - 1
       
       if updatedQuestions <= 0 {
+        let result = EarTrainingResult(
+          score: state.score,
+          totalQuestions: totalQuestions,
+          totalLives: totalLives,
+          totalReplays: totalAudioReplays,
+          livesLeft: state.remainingLives ?? 0,
+          replaysUsed: totalAudioReplays - (state.remainingReplays ?? 0)
+        )
+        
         return ReductionResult(
-          state: state.updating(
-            phase: .finished(score: state.score, totalQuestions: totalQuestions)
-          ),
+          state: state.updating(phase: .finished(result)),
           events: []
         )
       }

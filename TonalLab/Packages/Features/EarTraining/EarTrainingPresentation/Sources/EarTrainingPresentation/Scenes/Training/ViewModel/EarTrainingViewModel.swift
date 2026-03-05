@@ -10,7 +10,7 @@ import Foundation
 import EarTrainingDomain
 
 struct EarTrainingViewModelActions {
-  let showResult: (Int, Int) -> Void
+  let showResult: (EarTrainingResult) -> Void
 }
 
 enum EarTrainingModeBadgeTint {
@@ -130,8 +130,8 @@ final class EarTrainingViewModel: ObservableObject {
           self.selectedNote = nil
         }
         
-        if case let .finished(score, totalQuestions) = newState.phase {
-          self.actions.showResult(score, totalQuestions)
+        if case let .finished(result) = newState.phase {
+          self.actions.showResult(result)
         }
       }
     }

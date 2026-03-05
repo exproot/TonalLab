@@ -11,6 +11,7 @@
 		701ED98F2F58CED8007EC21B /* TonalLabAudio in Frameworks */ = {isa = PBXBuildFile; productRef = 701ED98E2F58CED8007EC21B /* TonalLabAudio */; };
 		701ED9912F58CEDB007EC21B /* EarTrainingDomain in Frameworks */ = {isa = PBXBuildFile; productRef = 701ED9902F58CEDB007EC21B /* EarTrainingDomain */; };
 		701ED9932F58CEDE007EC21B /* EarTrainingPresentation in Frameworks */ = {isa = PBXBuildFile; productRef = 701ED9922F58CEDE007EC21B /* EarTrainingPresentation */; };
+		707BA7D12F59F20800890A17 /* DotLottie in Frameworks */ = {isa = PBXBuildFile; productRef = 707BA7D02F59F20800890A17 /* DotLottie */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 				701ED98F2F58CED8007EC21B /* TonalLabAudio in Frameworks */,
 				701ED98D2F58CED5007EC21B /* SharedUI in Frameworks */,
 				701ED9932F58CEDE007EC21B /* EarTrainingPresentation in Frameworks */,
+				707BA7D12F59F20800890A17 /* DotLottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -126,6 +128,7 @@
 				701ED98E2F58CED8007EC21B /* TonalLabAudio */,
 				701ED9902F58CEDB007EC21B /* EarTrainingDomain */,
 				701ED9922F58CEDE007EC21B /* EarTrainingPresentation */,
+				707BA7D02F59F20800890A17 /* DotLottie */,
 			);
 			productName = TonalLab;
 			productReference = 702C97C62F3FAA3B004B0C3D /* TonalLab.app */;
@@ -182,6 +185,9 @@
 			);
 			mainGroup = 702C97BD2F3FAA3B004B0C3D;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				707BA7CF2F59F20800890A17 /* XCRemoteSwiftPackageReference "dotlottie-ios" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 702C97C72F3FAA3B004B0C3D /* Products */;
 			projectDirPath = "";
@@ -507,6 +513,17 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		707BA7CF2F59F20800890A17 /* XCRemoteSwiftPackageReference "dotlottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/LottieFiles/dotlottie-ios.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
 		701ED98C2F58CED5007EC21B /* SharedUI */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -523,6 +540,11 @@
 		701ED9922F58CEDE007EC21B /* EarTrainingPresentation */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = EarTrainingPresentation;
+		};
+		707BA7D02F59F20800890A17 /* DotLottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 707BA7CF2F59F20800890A17 /* XCRemoteSwiftPackageReference "dotlottie-ios" */;
+			productName = DotLottie;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

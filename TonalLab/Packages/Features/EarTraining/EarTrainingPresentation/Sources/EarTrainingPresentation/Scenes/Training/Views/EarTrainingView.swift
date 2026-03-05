@@ -368,7 +368,7 @@ private struct PhaseCardView: View {
   EarTrainingView(
     viewModel: EarTrainingViewModel(
       session: mockSession,
-      actions: EarTrainingViewModelActions(showResult: { _, _ in })
+      actions: EarTrainingViewModelActions(showResult: { _ in })
     )
   )
 }

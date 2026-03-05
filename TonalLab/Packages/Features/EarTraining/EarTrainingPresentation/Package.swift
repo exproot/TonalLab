@@ -22,6 +22,10 @@ let package = Package(
         name: "EarTrainingDomain",
         path: "../EarTrainingDomain"
       ),
+      .package(
+        url: "https://github.com/LottieFiles/dotlottie-ios.git",
+        from: "0.13.0"
+      )
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -36,7 +40,14 @@ let package = Package(
               .product(
                 name: "EarTrainingDomain",
                 package: "EarTrainingDomain"
+              ),
+              .product(
+                name: "DotLottie",
+                package: "dotlottie-ios"
               )
+            ],
+            resources: [
+              .process("Resources")
             ]
         ),
 
