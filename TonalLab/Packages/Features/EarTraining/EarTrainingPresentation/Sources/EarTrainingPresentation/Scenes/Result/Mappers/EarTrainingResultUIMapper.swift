@@ -61,12 +61,12 @@ private extension EarTrainingResultUIMapper {
     }
   }
   
-  static func makeRingColor(progress: Double) -> EarTrainingResultViewModel.RingColor {
+  static func makeRingColor(progress: Double) -> EarTrainingResultViewModel.RingTone {
     switch progress {
-    case 0.85...: return .green
-    case 0.7..<0.85: return .yellow
-    case 0.5..<0.7: return .orange
-    default: return .red
+    case 0.85...: return .excellent
+    case 0.7..<0.85: return .good
+    case 0.5..<0.7: return .fair
+    default: return .poor
     }
   }
   

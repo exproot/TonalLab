@@ -14,7 +14,7 @@ struct EarTrainingViewModelActions {
 }
 
 enum EarTrainingModeBadgeTint {
-  case green, orange
+  case practice, game
 }
 
 struct PracticeHeaderUIModel: Equatable {
@@ -68,7 +68,7 @@ final class EarTrainingViewModel: ObservableObject {
     self.state = EarTrainingState(context: EarTrainingContext(mode: .practice))
     self.headerUIModel = .practice(
       PracticeHeaderUIModel(
-        modeBadge: .init(title: "PRACTICE", systemImage: "infinity", tint: .green),
+        modeBadge: .init(title: "PRACTICE", systemImage: "infinity", tint: .practice),
         score: 0
       )
     )
@@ -188,14 +188,14 @@ final class EarTrainingViewModel: ObservableObject {
       return EarTrainingModeBadgeUIModel(
         title: "PRACTICE",
         systemImage: "infinity",
-        tint: .green
+        tint: .practice
       )
       
     case .game:
       return EarTrainingModeBadgeUIModel(
         title: "GAME",
         systemImage: "flag.checkered",
-        tint: .orange
+        tint: .game
       )
     }
   }
