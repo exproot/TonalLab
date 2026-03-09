@@ -7,9 +7,12 @@
 
 import EarTrainingDomain
 import DotLottie
+import SharedUI
 import SwiftUI
 
 struct EarTrainingResultView: View {
+  
+  @Environment(\.theme) private var theme
   
   @ObservedObject var viewModel: EarTrainingResultViewModel
   
@@ -24,41 +27,35 @@ struct EarTrainingResultView: View {
   )
   
   var body: some View {
-    VStack(spacing: 24) {
-      VStack(spacing: 8) {
-        Text(viewModel.uiModel.title)
-          .font(.title.bold())
-        
-        Text(viewModel.uiModel.subtitle)
-          .font(.subheadline)
-          .foregroundStyle(.secondary)
-      }
-      
-      ZStack {
-        
-        if showConfetti {
-          DotLottiePlayerView(animation: confettiAnimation)
-            .playing()
-            .allowsHitTesting(false)
-            .frame(height: 220)
+    ScreenContainer {
+      VStack(spacing: Spacing.large) {
+        VStack(spacing: Spacing.small) {
+          Text(viewModel.uiModel.title)
+            .font(Typography.title)
+          
+          Text(viewModel.uiModel.subtitle)
+            .font(Typography.subtitle)
+            .foregroundStyle(.secondary)
         }
         
-        scoreRing
+        ZStack {
+          
+          if showConfetti {
+            DotLottiePlayerView(animation: confettiAnimation)
+              .playing()
+              .allowsHitTesting(false)
+              .frame(height: 220)
+          }
+          
+          scoreRing
+        }
+        
+        statsSection
+        actionButtons
+        
+        Spacer(minLength: 0)
       }
-      
-      statsSection
-      actionButtons
-      
-      Spacer(minLength: 0)
     }
-    .padding()
-    .background(
-      LinearGradient(
-        colors: [.blue.opacity(0.12), .purple.opacity(0.06)],
-        startPoint: .top,
-        endPoint: .bottom
-      )
-    )
     .task(id: viewModel.finalScore) {
       displayedScore = 0
       animatedProgress = 0
@@ -76,7 +73,7 @@ struct EarTrainingResultView: View {
   }
   
   private var scoreRing: some View {
-    VStack(spacing: 24) {
+    VStack(spacing: Spacing.large) {
       ZStack {
         Circle()
           .stroke(.gray.opacity(0.18), lineWidth: 14)
@@ -85,7 +82,7 @@ struct EarTrainingResultView: View {
           .trim(from: 0, to: animatedProgress)
           .stroke(
             ringColor,
-            style: StrokeStyle(lineWidth: 14, lineCap: .butt)
+            style: StrokeStyle(lineWidth: 14, lineCap: .round)
           )
           .shadow(
             color: ringColor.opacity(viewModel.uiModel.ringGlowOpacity),
@@ -94,59 +91,59 @@ struct EarTrainingResultView: View {
           )
           .rotationEffect(.degrees(-90))
         
-        VStack(spacing: 6) {
+        VStack(spacing: Spacing.small) {
           Text("\(displayedScore) / \(viewModel.uiModel.totalQuestions)")
-            .font(.title2.bold())
-            .monospacedDigit()
+            .font(Typography.digit)
           
           Text("Grade: \(viewModel.uiModel.gradeText)")
-            .font(.subheadline.weight(.semibold))
-            .foregroundStyle(.secondary)
+            .font(Typography.subtitle)
+            .fontWeight(.semibold)
+            .foregroundStyle(theme.colors.secondary)
         }
       }
       .frame(width: 180, height: 180)
       
-      HStack(spacing: 8) {
-        Image(systemName: "sparkles")
-        
-        Text("Accuracy \(Int(viewModel.uiModel.progress * 100))%")
-          .monospacedDigit()
+      CapsuleChip {
+        HStack(spacing: Spacing.small) {
+          Image(systemName: "sparkles")
+          
+          Text("Accuracy \(Int(viewModel.uiModel.progress * 100))%")
+            .monospacedDigit()
+        }
+        .font(Typography.subtitle)
+        .fontWeight(.semibold)
       }
-      .font(.subheadline.weight(.semibold))
-      .padding(.horizontal, 12)
-      .padding(.vertical, 8)
-      .background(.thinMaterial, in: .capsule)
     }
     .padding(.top, 10)
   }
   
   private var actionButtons: some View {
-    VStack(spacing: 12) {
+    VStack(spacing: Spacing.medium) {
       Button {
         // TODO: Play again
       } label: {
         Text(viewModel.uiModel.primaryButtonTitle)
-          .frame(maxWidth: .infinity)
-          .padding(.vertical, 14)
-          .background(Capsule().fill(Color.accentColor))
-          .foregroundStyle(.white)
       }
+      .buttonStyle(PrimaryButtonStyle())
       
       Button {
         // TODO: Practice
       } label: {
         Text(viewModel.uiModel.secondaryButtonTitle)
-          .frame(maxWidth: .infinity)
-          .padding(.vertical, 14)
-          .background(Capsule().fill(Color.gray.opacity(0.18)))
       }
+      .buttonStyle(
+        PrimaryButtonStyle(
+          backgroundColor: theme.colors.secondary.opacity(0.18),
+          foregroundColor: theme.colors.primary
+        )
+      )
     }
     .font(.headline)
     .padding(.top, 8)
   }
   
   private var statsSection: some View {
-    HStack(spacing: 12) {
+    HStack(spacing: Spacing.medium) {
       ForEach(viewModel.uiModel.stats) { stat in
         statCard(stat)
       }
@@ -155,22 +152,22 @@ struct EarTrainingResultView: View {
   
   private var ringColor: Color {
     switch viewModel.uiModel.ringColor {
-    case .green: .green
-    case .yellow: .yellow
-    case .orange: .orange
-    case .red: .red
+    case .excellent: theme.colors.semantic.success
+    case .good: theme.colors.semantic.info
+    case .fair: theme.colors.semantic.warning
+    case .poor: theme.colors.semantic.error
     }
   }
   
   private func statCard(_ stat: EarTrainingResultViewModel.ResultStat) -> some View {
-    VStack(spacing: 6) {
+    VStack(spacing: Spacing.small) {
       Image(systemName: iconName(for: stat.type))
-        .font(.headline)
+        .frame(width: IconSize.medium, height: IconSize.medium)
         .foregroundStyle(iconColor(for: stat.type))
       
       Text(stat.title)
-        .font(.caption)
-        .foregroundStyle(.secondary)
+        .font(Typography.caption)
+        .foregroundStyle(theme.colors.secondary)
       
       Text(stat.value)
         .font(.headline)
@@ -178,10 +175,7 @@ struct EarTrainingResultView: View {
     }
     .frame(maxWidth: .infinity)
     .padding(.vertical, 12)
-    .background(
-      RoundedRectangle(cornerRadius: 16)
-        .fill(.thinMaterial)
-    )
+    .background(CardBackground())
   }
   
   private func iconName(for type: EarTrainingResultViewModel.ResultStat.StatType) -> String {
@@ -193,8 +187,8 @@ struct EarTrainingResultView: View {
   
   private func iconColor(for type: EarTrainingResultViewModel.ResultStat.StatType) -> Color {
     switch type {
-    case .lives: return .red
-    case .replays:return .primary
+    case .lives: return theme.colors.palette.brandSecondary
+    case .replays: return theme.colors.primary
     }
   }
   

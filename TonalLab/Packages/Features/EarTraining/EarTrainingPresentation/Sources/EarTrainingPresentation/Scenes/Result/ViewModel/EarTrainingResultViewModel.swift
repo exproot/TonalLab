@@ -11,8 +11,8 @@ import Foundation
 @MainActor
 final class EarTrainingResultViewModel: ObservableObject {
   
-  enum RingColor {
-    case green, yellow, orange, red
+  enum RingTone {
+    case excellent, good, fair, poor
   }
   
   struct ResultStat: Identifiable, Equatable {
@@ -34,7 +34,7 @@ final class EarTrainingResultViewModel: ObservableObject {
     let scoreText: String
     let gradeText: String
     let progress: Double
-    let ringColor: RingColor
+    let ringColor: RingTone
     let ringGlowOpacity: Double
     let stats: [ResultStat]
     let primaryButtonTitle: String
