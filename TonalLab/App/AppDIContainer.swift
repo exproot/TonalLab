@@ -6,11 +6,24 @@
 //
 
 import Foundation
+import HomePresentation
 import TonalLabAudio
 import EarTrainingDomain
 import EarTrainingPresentation
 
 final class AppDIContainer {
+  
+  weak var earTrainingFlowProvider: EarTrainingFlowProvider?
+  
+  func makeHomeModule() -> HomePresentation.Module {
+    precondition(earTrainingFlowProvider != nil, "EarTrainingFlowProvider not set")
+    
+    let dependencies = HomePresentation.ModuleDependencies(
+      earTrainingFlowProvider: earTrainingFlowProvider!
+    )
+    
+    return HomePresentation.Module(dependencies: dependencies)
+  }
   
   func makeEarTrainingModule() -> EarTrainingPresentation.Module {
     let audioPlayer = PianoSamplePlayer()

@@ -50,6 +50,9 @@ struct EarTrainingView: View {
     .task {
       await viewModel.start()
     }
+    .onDisappear {
+      viewModel.stop()
+    }
   }
   
 }

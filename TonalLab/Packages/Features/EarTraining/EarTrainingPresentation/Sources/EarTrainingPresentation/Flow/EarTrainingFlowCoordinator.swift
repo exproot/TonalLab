@@ -39,7 +39,7 @@ final class EarTrainingFlowCoordinator {
     let actions = EarTrainingViewModelActions(showResult: showResult)
     let viewController = dependencies.makeEarTrainingHostingController(actions: actions, mode: mode)
     
-    navigationController?.pushViewController(viewController, animated: false)
+    navigationController?.pushViewController(viewController, animated: true)
   }
   
   private func showResult(result: EarTrainingResult) {

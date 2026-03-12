@@ -9,6 +9,7 @@ import SwiftUI
 
 public enum Typography {
   
+  public static let largeTitle = Font.largeTitle
   public static let title = Font.title.weight(.bold)
   public static let subtitle = Font.subheadline
   public static let body = Font.body

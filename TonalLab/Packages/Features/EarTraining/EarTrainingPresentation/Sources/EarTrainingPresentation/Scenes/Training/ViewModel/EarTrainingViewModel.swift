@@ -107,6 +107,11 @@ final class EarTrainingViewModel: ObservableObject {
     Task { await session.dispatch(.replayAudio) }
   }
   
+  func stop() {
+    listenTask?.cancel()
+    listenTask = nil
+  }
+  
   // MARK: Private
   private func bindDerivedState() {
     $state
@@ -117,26 +122,59 @@ final class EarTrainingViewModel: ObservableObject {
   }
   
   private func startListening() {
+    let session = self.session
+    let actions = self.actions
+    
     listenTask = Task { [weak self] in
-      guard let self else { return }
-      
-      for await newState in self.session.states {
-        let oldID = self.state.currentQuestion?.id
-        let newID = newState.currentQuestion?.id
-        
-        self.state = newState
-        
-        if oldID != newID {
-          self.selectedNote = nil
-        }
-        
-        if case let .finished(result) = newState.phase {
-          self.actions.showResult(result)
-        }
+      for await newState in session.states {
+        guard !Task.isCancelled else { break }
+        self?.consume(newState, actions: actions)
       }
     }
   }
   
+  private func consume(_ newState: EarTrainingState, actions: EarTrainingViewModelActions) {
+    let oldID = state.currentQuestion?.id
+    let newID = newState.currentQuestion?.id
+    
+    state = newState
+    
+    if oldID != newID {
+      selectedNote = nil
+    }
+    
+    if case let .finished(result) = newState.phase {
+      actions.showResult(result)
+    }
+  }
+  
+}
+
+extension EarTrainingViewModel {
+  var phaseImageString: String {
+    switch state.phase {
+    case .idle, .finished:
+      "magnifyingglass"
+    case .waitingForAnswer:
+      "ear.badge.waveform"
+    case .resolvingAnswer:
+      "hourglass.bottomhalf.filled"
+    }
+  }
+  
+  var phaseText: String {
+    switch state.phase {
+    case .idle, .finished:
+      "Waiting"
+    case .waitingForAnswer:
+      "Listen and choose the correct note"
+    case .resolvingAnswer:
+      "Checking your answer"
+    }
+  }
+}
+
+extension EarTrainingViewModel {
   private static func makeHeaderUIModel(from state: EarTrainingState) -> EarTrainingHeaderUIModel {
     switch state.context.mode {
     case .practice:
@@ -197,31 +235,6 @@ final class EarTrainingViewModel: ObservableObject {
         systemImage: "flag.checkered",
         tint: .game
       )
-    }
-  }
-  
-}
-
-extension EarTrainingViewModel {
-  var phaseImageString: String {
-    switch state.phase {
-    case .idle, .finished:
-      "magnifyingglass"
-    case .waitingForAnswer:
-      "ear.badge.waveform"
-    case .resolvingAnswer:
-      "hourglass.bottomhalf.filled"
-    }
-  }
-  
-  var phaseText: String {
-    switch state.phase {
-    case .idle, .finished:
-      "Waiting"
-    case .waitingForAnswer:
-      "Listen and choose the correct note"
-    case .resolvingAnswer:
-      "Checking your answer"
     }
   }
 }
