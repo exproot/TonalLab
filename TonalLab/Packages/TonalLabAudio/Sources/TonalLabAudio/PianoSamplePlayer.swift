@@ -22,7 +22,7 @@ public actor PianoSamplePlayer: AudioPlaying {
   
   public func play(resourceName: String) async throws {
     guard let url = Bundle.module.url(forResource: resourceName, withExtension: "wav") else {
-      throw NSError(domain: "ToneGenerator", code: 0, userInfo: nil)
+      throw AudioError.fileNotFound
     }
     
     let file = try AVAudioFile(forReading: url)

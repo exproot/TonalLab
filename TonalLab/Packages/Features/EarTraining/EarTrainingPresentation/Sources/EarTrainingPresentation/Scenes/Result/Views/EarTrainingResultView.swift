@@ -120,23 +120,11 @@ struct EarTrainingResultView: View {
   private var actionButtons: some View {
     VStack(spacing: Spacing.medium) {
       Button {
-        // TODO: Play again
+        viewModel.didTapBack()
       } label: {
         Text(viewModel.uiModel.primaryButtonTitle)
       }
       .buttonStyle(PrimaryButtonStyle())
-      
-      Button {
-        // TODO: Practice
-      } label: {
-        Text(viewModel.uiModel.secondaryButtonTitle)
-      }
-      .buttonStyle(
-        PrimaryButtonStyle(
-          backgroundColor: theme.colors.secondary.opacity(0.18),
-          foregroundColor: theme.colors.primary
-        )
-      )
     }
     .font(.headline)
     .padding(.top, 8)
@@ -220,7 +208,8 @@ struct EarTrainingResultView: View {
   
   EarTrainingResultView(
     viewModel: EarTrainingResultViewModel(
-      result: result
+      result: result,
+      actions: EarTrainingResultViewModelActions(onTappingBack: { })
     )
   )
 }

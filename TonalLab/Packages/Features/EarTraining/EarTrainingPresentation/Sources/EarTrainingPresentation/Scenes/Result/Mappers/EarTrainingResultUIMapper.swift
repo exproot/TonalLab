@@ -42,8 +42,7 @@ enum EarTrainingResultUIMapper {
       ringColor: ringColor,
       ringGlowOpacity: glow,
       stats: stats,
-      primaryButtonTitle: "Play Again",
-      secondaryButtonTitle: "Practice"
+      primaryButtonTitle: "Back to Home"
     )
   }
   
