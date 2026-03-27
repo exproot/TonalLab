@@ -13,5 +13,6 @@ public enum IconSize  {
   public static let medium: CGFloat = 24
   public static let large: CGFloat = 32
   public static let extraLarge: CGFloat = 48
+  public static let extraExtraLarge: CGFloat = 56
   
 }
