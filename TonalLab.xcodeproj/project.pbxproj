@@ -11,6 +11,7 @@
 		701ED98F2F58CED8007EC21B /* TonalLabAudio in Frameworks */ = {isa = PBXBuildFile; productRef = 701ED98E2F58CED8007EC21B /* TonalLabAudio */; };
 		701ED9912F58CEDB007EC21B /* EarTrainingDomain in Frameworks */ = {isa = PBXBuildFile; productRef = 701ED9902F58CEDB007EC21B /* EarTrainingDomain */; };
 		701ED9932F58CEDE007EC21B /* EarTrainingPresentation in Frameworks */ = {isa = PBXBuildFile; productRef = 701ED9922F58CEDE007EC21B /* EarTrainingPresentation */; };
+		703CD2F42F6CB16100A8FC34 /* OnboardingPresentation in Frameworks */ = {isa = PBXBuildFile; productRef = 703CD2F32F6CB16100A8FC34 /* OnboardingPresentation */; };
 		707BA7D12F59F20800890A17 /* DotLottie in Frameworks */ = {isa = PBXBuildFile; productRef = 707BA7D02F59F20800890A17 /* DotLottie */; };
 		70DCFB632F5F06A700C738F4 /* HomePresentation in Frameworks */ = {isa = PBXBuildFile; productRef = 70DCFB622F5F06A700C738F4 /* HomePresentation */; };
 /* End PBXBuildFile section */
@@ -62,6 +63,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				701ED9912F58CEDB007EC21B /* EarTrainingDomain in Frameworks */,
+				703CD2F42F6CB16100A8FC34 /* OnboardingPresentation in Frameworks */,
 				701ED98F2F58CED8007EC21B /* TonalLabAudio in Frameworks */,
 				701ED98D2F58CED5007EC21B /* SharedUI in Frameworks */,
 				701ED9932F58CEDE007EC21B /* EarTrainingPresentation in Frameworks */,
@@ -132,6 +134,7 @@
 				701ED9922F58CEDE007EC21B /* EarTrainingPresentation */,
 				707BA7D02F59F20800890A17 /* DotLottie */,
 				70DCFB622F5F06A700C738F4 /* HomePresentation */,
+				703CD2F32F6CB16100A8FC34 /* OnboardingPresentation */,
 			);
 			productName = TonalLab;
 			productReference = 702C97C62F3FAA3B004B0C3D /* TonalLab.app */;
@@ -543,6 +546,10 @@
 		701ED9922F58CEDE007EC21B /* EarTrainingPresentation */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = EarTrainingPresentation;
+		};
+		703CD2F32F6CB16100A8FC34 /* OnboardingPresentation */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = OnboardingPresentation;
 		};
 		707BA7D02F59F20800890A17 /* DotLottie */ = {
 			isa = XCSwiftPackageProductDependency;

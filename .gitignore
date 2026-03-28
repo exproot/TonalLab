@@ -31,9 +31,9 @@ fastlane/screenshots
 SECRETS.xcconfig
 
 # Lottie
+*.lottie
 Lottie/
+Animations/
 
 # Firebase
 *GoogleService-Info.plist
-
-Resources/Animations/*.lottie
