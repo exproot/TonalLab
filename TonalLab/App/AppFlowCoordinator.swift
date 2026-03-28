@@ -9,11 +9,13 @@ import UIKit
 import HomePresentation
 import EarTrainingDomain
 import EarTrainingPresentation
+import OnboardingPresentation
 
 final class AppFlowCoordinator {
   
   private weak var navigationController: UINavigationController?
   private let appDIContainer: AppDIContainer
+  private let onboardingStateRepository: OnboardingStateRepository
   
   init(
     navigationController: UINavigationController,
@@ -21,14 +23,41 @@ final class AppFlowCoordinator {
   ) {
     self.navigationController = navigationController
     self.appDIContainer = appDIContainer
+    self.onboardingStateRepository = appDIContainer.onboardingStateRepository
     
     appDIContainer.earTrainingFlowProvider = self
   }
   
   func start() {
+    routeToInitialFlow()
+  }
+  
+  private func routeToInitialFlow() {
+    if onboardingStateRepository.hasSeenOnboarding {
+      showHome()
+    } else {
+      showOnboarding()
+    }
+  }
+  
+  private func showOnboarding() {
     guard let navigationController else { return }
-    let homeModule = appDIContainer.makeHomeModule()
     
+    let onboardingModule = appDIContainer.makeOnboardingModule()
+    onboardingModule.startOnboardingFlow(in: navigationController) { [weak self] in
+      self?.completeOnboarding()
+    }
+  }
+  
+  private func completeOnboarding() {
+    onboardingStateRepository.setHasSeenOnboarding()
+    showHome()
+  }
+  
+  private func showHome() {
+    guard let navigationController else { return }
+    
+    let homeModule = appDIContainer.makeHomeModule()
     homeModule.startHomeFlow(in: navigationController)
   }
   

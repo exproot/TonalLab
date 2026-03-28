@@ -17,6 +17,10 @@ let package = Package(
       .package(
         name: "SharedUI",
         path: "../../SharedUI"
+      ),
+      .package(
+        url: "https://github.com/LottieFiles/dotlottie-ios.git",
+        from: "0.13.0"
       )
     ],
     targets: [
@@ -28,7 +32,14 @@ let package = Package(
               .product(
                 name: "SharedUI",
                 package: "SharedUI"
+              ),
+              .product(
+                name: "DotLottie",
+                package: "dotlottie-ios"
               )
+            ],
+            resources: [
+              .process("Resources")
             ]
         ),
     ]

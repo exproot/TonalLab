@@ -10,10 +10,17 @@ import HomePresentation
 import TonalLabAudio
 import EarTrainingDomain
 import EarTrainingPresentation
+import OnboardingPresentation
 
 final class AppDIContainer {
   
   weak var earTrainingFlowProvider: EarTrainingFlowProvider?
+  
+  lazy var onboardingStateRepository: OnboardingStateRepository = UserDefaultsOnboardingStateRepository()
+  
+  func makeOnboardingModule() -> OnboardingPresentation.Module {
+    OnboardingPresentation.Module(dependencies: .init())
+  }
   
   func makeHomeModule() -> HomePresentation.Module {
     precondition(earTrainingFlowProvider != nil, "EarTrainingFlowProvider not set")

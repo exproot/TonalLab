@@ -32,10 +32,9 @@ final class HomeFlowCoordinator {
   func start() {
     // Keeping a strong reference with the closure on purpose to keep this flow alive
     let actions = HomeViewModelActions(startTraining: showEarTraining)
-    
     let viewController = dependencies.makeHomeHostingController(actions: actions)
     
-    navigationController?.pushViewController(viewController, animated: true)
+    navigationController?.setViewControllers([viewController], animated: true)
   }
   
   private func showEarTraining(selection: HomeTrainingSelection) {
