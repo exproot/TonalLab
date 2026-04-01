@@ -16,7 +16,8 @@ protocol EarTrainingFlowCoordinatorDependencies {
   ) -> EarTrainingHostingController
   
   func makeEarTrainingResultHostingController(
-    result: EarTrainingResult
+    result: EarTrainingResult,
+    actions: EarTrainingResultViewModelActions
   ) -> EarTrainingResultHostingController
 }
 
@@ -39,15 +40,20 @@ final class EarTrainingFlowCoordinator {
     let actions = EarTrainingViewModelActions(showResult: showResult)
     let viewController = dependencies.makeEarTrainingHostingController(actions: actions, mode: mode)
     
-    navigationController?.pushViewController(viewController, animated: false)
+    navigationController?.pushViewController(viewController, animated: true)
   }
   
   private func showResult(result: EarTrainingResult) {
+    let actions = EarTrainingResultViewModelActions { [weak self] in
+      self?.navigationController?.popToRootViewController(animated: true)
+    }
+    
     let viewController = dependencies.makeEarTrainingResultHostingController(
-      result: result
+      result: result,
+      actions: actions
     )
     
-    navigationController?.setViewControllers([viewController], animated: true)
+    navigationController?.pushViewController(viewController, animated: true)
   }
   
 }

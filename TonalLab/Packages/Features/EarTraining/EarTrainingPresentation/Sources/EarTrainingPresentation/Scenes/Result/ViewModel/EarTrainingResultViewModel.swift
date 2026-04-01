@@ -8,11 +8,15 @@
 import EarTrainingDomain
 import Foundation
 
+struct EarTrainingResultViewModelActions {
+  let onTappingBack: () -> Void
+}
+
 @MainActor
 final class EarTrainingResultViewModel: ObservableObject {
   
-  enum RingColor {
-    case green, yellow, orange, red
+  enum RingTone {
+    case excellent, good, fair, poor
   }
   
   struct ResultStat: Identifiable, Equatable {
@@ -34,23 +38,28 @@ final class EarTrainingResultViewModel: ObservableObject {
     let scoreText: String
     let gradeText: String
     let progress: Double
-    let ringColor: RingColor
+    let ringColor: RingTone
     let ringGlowOpacity: Double
     let stats: [ResultStat]
     let primaryButtonTitle: String
-    let secondaryButtonTitle: String
   }
   
   // MARK: Dependencies
   private let result: EarTrainingResult
+  private let actions: EarTrainingResultViewModelActions
   
   // MARK: Output
   @Published private(set) var uiModel: UIModel
   
   // MARK: Lifecycle
-  init(result: EarTrainingResult) {
+  init(
+    result: EarTrainingResult,
+    actions: EarTrainingResultViewModelActions
+  ) {
     self.result = result
-    self.uiModel = EarTrainingResultUIMapper.map(result)
+    self.actions = actions
+    
+    uiModel = EarTrainingResultUIMapper.map(result)
   }
   
   // MARK: Computed
@@ -60,6 +69,10 @@ final class EarTrainingResultViewModel: ObservableObject {
   
   var finalScore: Int {
     Int(uiModel.progress * Double(result.totalQuestions))
+  }
+  
+  func didTapBack() {
+    actions.onTappingBack()
   }
   
 }

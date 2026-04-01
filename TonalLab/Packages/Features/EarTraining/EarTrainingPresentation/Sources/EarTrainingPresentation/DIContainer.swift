@@ -42,9 +42,10 @@ final class DIContainer {
   }
   
   func makeEarTrainingResultViewModel(
-    result: EarTrainingResult
+    result: EarTrainingResult,
+    actions: EarTrainingResultViewModelActions
   ) -> EarTrainingResultViewModel {
-    .init(result: result)
+    .init(result: result, actions: actions)
   }
   
   // MARK: Flow Coordinators
@@ -72,11 +73,12 @@ extension DIContainer: EarTrainingFlowCoordinatorDependencies {
   }
   
   func makeEarTrainingResultHostingController(
-    result: EarTrainingResult
+    result: EarTrainingResult,
+    actions: EarTrainingResultViewModelActions
   ) -> EarTrainingResultHostingController {
     EarTrainingResultHostingController(
       rootView: EarTrainingResultView(
-        viewModel: makeEarTrainingResultViewModel(result: result)
+        viewModel: makeEarTrainingResultViewModel(result: result, actions: actions)
       )
     )
   }
